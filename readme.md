@@ -9,7 +9,7 @@ The files in this repository allow full replication of the analyses, tables, and
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ### Data
 - `salta_data.Rdata`  
