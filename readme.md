@@ -1,19 +1,54 @@
-This replication package contains files that can be used to replicate the analysis done in "Voting Made Safe and Easy: The Impact of e-voting on Citizen Perceptions", Political Science Research and Methods 1(1): 117-37.
+# Voting Made Safe and Easy — Replication Package
 
-The replication package includes the following files:
+This repository contains the replication materials for:
 
-(1) salta_data.Rdata      R data file containing the survey data used in the analysis
+> *Voting Made Safe and Easy: The Impact of e-voting on Citizen Perceptions*  
+> Political Science Research and Methods, 1(1): 117–137
 
-(2) script1_recoding.R    R code for recoding variables included in the analysis. Depends on salta_data.Rdata and produces datamatch.Rdata
+The files in this repository allow full replication of the analyses, tables, and figures reported in the article and its online appendix.
 
-(3) datamatch.Rdata       R data file containing the recoded data set produced by script1_recoding.R
+---
 
-(4) script2_analysis.R    R code for replicating all the tables included in the paper (Tables 1-5). Depends on datamatch.Rdata and produces datamatched.Rdata
+## 📂 Repository Structure
 
-(5) m.out.Rdata           MatchIt object produced by script2_analysis.R
+### Data
+- `salta_data.Rdata`  
+  Original survey data used in the analysis.
+- `datamatch.Rdata`  
+  Recoded dataset produced during preprocessing.
+- `datamatched.Rdata`  
+  Matched dataset used for the main analyses.
 
-(6) datamatched.Rdata     R data file containing the matched data set produced by script2_analysis.R
+### Scripts
+- `script1_recoding.R`  
+  Recodes raw survey variables.  
+  **Input:** `salta_data.Rdata` → **Output:** `datamatch.Rdata`
+- `script2_analysis.R`  
+  Replicates Tables 1–5 from the paper using matching methods.  
+  **Input:** `datamatch.Rdata` → **Output:** `datamatched.Rdata`, `m.out.Rdata`
+- `script3_multilev.R`  
+  Estimates multilevel models and replicates Figure A4 and Table A4 (Online Appendix 4).  
+  **Input:** `datamatched.Rdata`
 
-(7) script3_multilev.R    R and JAGS code for replicating Figure A4 and Table A4 of the Supplementary Materials, Online Appendix 4. Depends on datamatched.Rdata and produces model.bug and coda.samples.Rdata
+### Model Files
+- `m.out.Rdata`  
+  MatchIt object produced during the matching procedure.
+- `model.bug`  
+  JAGS model specification for multilevel analyses.
+- `coda.samples.Rdata`  
+  Posterior samples from JAGS estimation.
 
-(8) model.bug             JAGS code for estimating the multilevel models discussed in the Supplementary Materials, Online Appendix 4
+---
+
+## Replication Order
+
+1. Run `script1_recoding.R`  
+2. Run `script2_analysis.R`  
+3. Run `script3_multilev.R`
+
+---
+
+## Notes
+
+- All analyses are implemented in **R**, with multilevel models estimated using **JAGS**.
+- Scripts are designed to be run sequentially as outlined above.
